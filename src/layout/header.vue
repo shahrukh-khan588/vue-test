@@ -11,16 +11,12 @@
           <p class="display-1 ml-2 mb-0">Logo</p>
         </v-toolbar-title>
       </div>
-      <div
-        class="d-flex align-center ml-auto"
-        width="290"
-        v-if="username !== ''"
-      >
+      <div class="d-flex align-center ml-auto" width="290" v-if="user">
         <v-avatar color="#9CF373" size="32" class="mr-3">
           <span class="white--text text-caption">Sh</span>
         </v-avatar>
         <p class="grey--text mb-0">{{ username }}</p>
-        <v-btn icon color="black" @click="$props.logout">
+        <v-btn icon color="black" @click="logout">
           <v-icon>mdi-logout</v-icon>
         </v-btn>
       </div>
@@ -29,20 +25,35 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld";
+import { auth } from "../firebaseConfig";
 
 export default {
   name: "App",
-  components: {
-    // HelloWorld,
+  components: {},
+  data: () => ({
+    user: "",
+  }),
+  methods: {
+    logout() {
+      auth
+        .signOut(auth)
+        .then(() => {
+          localStorage.removeItem("Authorization");
+          this.$router.push("/login");
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    },
   },
 
-  data: () => ({
-    //
-  }),
+  watch: {
+    $route() {
+      this.user = localStorage.getItem("Authorization");
+    },
+  },
   props: {
     username: String,
-    logout: Function,
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <v-dialog v-model="$props.show" max-width="500px">
     <v-card class="d-flex align-center flex-column pb-4 pt-12">
       <div class="crossIcons">
-        <v-icon @click="nagivateToLogin = false">mdi-close</v-icon>
+        <v-icon @click="nagivateToLogin">mdi-close</v-icon>
       </div>
       <v-img
         src="../../src/assets/fg.png"
@@ -28,6 +28,7 @@ export default {
   props: {
     show: Boolean,
     email: String,
+    handelCloseDialog: Function,
   },
   methods: {
     nagivateToLogin() {

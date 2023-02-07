@@ -33,7 +33,7 @@
       >
     </form>
     <v-container class="text-center">
-      <router-link to="/forgetpassword" class="link">
+      <router-link to="/forgetpassword" style="color: #1a1a1a">
         Forgot Password ?</router-link
       >
     </v-container>
@@ -41,10 +41,7 @@
 </template>
 
 <script>
-// import Button from "@/components/Button.vue";
-// import TextField from "@/components/TextField.vue";
 import { auth } from "../firebaseConfig";
-// import { authorize, listFiles } from "./index";
 export default {
   name: "HelloWorld",
   data() {
@@ -58,10 +55,7 @@ export default {
       emailRules: [(v) => /.+@.+\..+/.test(v) || "E-mail must be valid"],
     };
   },
-  components: {
-    // Button,
-    // TextField,
-  },
+  components: {},
   methods: {
     userRegistration() {
       auth
@@ -72,6 +66,7 @@ export default {
               displayName: this.user.name,
             })
             .then(() => {
+              localStorage.setItem("Authorization", res.user);
               this.$router.push("/");
             });
         })
@@ -83,15 +78,6 @@ export default {
 };
 </script>
 
-<style>
-.link {
-  color: "#333";
-}
-</style>
+<style></style>
 
-<style>
-/* .v-text-field,
-.v-btn {
-  width: 328px;
-} */
-</style>
+<style></style>

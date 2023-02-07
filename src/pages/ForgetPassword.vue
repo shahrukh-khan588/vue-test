@@ -36,13 +36,15 @@
         </v-btn>
       </form>
     </v-card>
-    <Dialog :show="show" :email="email"></Dialog>
+    <Dialog
+      :show="show"
+      :email="email"
+      :handelCloseDialog="handelCloseDialog"
+    ></Dialog>
   </div>
 </template>
 
 <script>
-// import Button from "@/components/Button.vue";
-// import TextField from "@/components/TextField.vue";
 import Dialog from "./sucsessDialog.vue";
 import { auth } from "../firebaseConfig";
 export default {
@@ -57,8 +59,6 @@ export default {
   },
   components: {
     Dialog,
-    // Button,
-    // TextField,
   },
   methods: {
     forgetPassword() {
@@ -70,6 +70,9 @@ export default {
         .catch((error) => {
           alert(error);
         });
+    },
+    handelCloseDialog() {
+      this.show = false;
     },
   },
 };

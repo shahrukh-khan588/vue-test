@@ -69,7 +69,6 @@
 <script>
 import Dialog from "../components/Dialog.vue";
 import Table from "../components/table.vue";
-// import { gapi } from "gapi-script";
 
 export default {
   name: "App",
@@ -103,24 +102,24 @@ export default {
   methods: {
     async driveIconClicked() {
       console.log("Clicked");
-      await gapi.load("auth2", () => {
-        console.log("Auth2 Loaded");
-        gapi.auth2.authorize(
-          {
-            client_id: this.clientId,
-            scope: this.scope,
-            immediate: false,
-          },
-          (res) => {
-            console.log(res, "resssss");
-          }
-        );
-      });
-      gapi.load("picker", () => {
-        console.log("Picker Loaded");
-        this.pickerApiLoaded = true;
-        this.createPicker();
-      });
+      // await gapi.load("auth2", () => {
+      //   console.log("Auth2 Loaded");
+      //   gapi.auth2.authorize(
+      //     {
+      //       client_id: this.clientId,
+      //       scope: this.scope,
+      //       immediate: false,
+      //     },
+      //     (res) => {
+      //       console.log(res, "resssss");
+      //     }
+      //   );
+      // });
+      // gapi.load("picker", () => {
+      //   console.log("Picker Loaded");
+      //   this.pickerApiLoaded = true;
+      //   this.createPicker();
+      // });
     },
 
     handleAuthResult(authResult) {
